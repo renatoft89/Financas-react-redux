@@ -4,7 +4,7 @@ import '../styles/Header.css'
 class Header extends React.Component {
   render() {
     return (
-    <div class="header">
+    <div className="header">
       <h1>Controle Financeiro</h1>
       <p>Simplificado</p>
     </div>

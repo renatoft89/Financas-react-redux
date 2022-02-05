@@ -2,18 +2,9 @@ import React from "react";
 import '../styles/Tabela.css'
 
 class Resultado extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      dataInfo: [],
-    };
-  }
-  render() {
-    const { dataInfo } = this.state;
+   render() {
     return (
       <div>
-
-      
       <table id="customers">
       <tr>
         <th>Data</th>
@@ -21,6 +12,7 @@ class Resultado extends React.Component {
         <th>Descrição</th>
         <th>Valor</th>
       </tr>
+
       {/* {dataInfo.map(function(item)
                   {
                      return (
@@ -43,7 +35,6 @@ class Resultado extends React.Component {
         <td>Abastecimento</td>
         <td>R$ 100,00</td>
       </tr> */}
-     
     </table>
     </div>
     )}
