@@ -1,0 +1,14 @@
+.info {
+  width: 90%;
+  height: 50px;
+  margin-top: 30px;
+  margin-left: 70px;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+label, input {
+  margin-left: 10px;
+}
