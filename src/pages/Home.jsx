@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../components/Header";
 import Info from "../components/Info";
-import Tabela from "../components/Tabela";
+import Table from "../components/Table";
 
 class Home extends React.Component {
   render() {
     return (
     <>
       <Header />
-      <Tabela />
+      <Table />
       <Info />
     </>
     )}

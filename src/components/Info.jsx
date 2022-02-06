@@ -14,6 +14,7 @@ class Info extends React.Component {
       local: '',
       descricao: '',
       valor: '',
+      infos: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmitForm = this.onSubmitForm.bind(this);
@@ -26,6 +27,9 @@ class Info extends React.Component {
 
   onSubmitForm() {
     const { dispatchSetValue } = this.props;
+    const{ date, local, descricao, valor } = this.state
+    const { infos } = this.state;
+    infos.push({ date, local, descricao, valor  })
     // Disparamos a nossa action através da função importada
     // de actions.js, que apelidamos de dispatchSetValue
     dispatchSetValue(this.state);
