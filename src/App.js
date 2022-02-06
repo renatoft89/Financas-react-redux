@@ -1,13 +1,16 @@
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
-import Home from './pages/Home';
+import Content from './components/Content';
 
-function App() {
-  return (
-   <>
-    <Home />
-    
-   </>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Content />
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

@@ -1,4 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { setPurchaseValue } from '../redux/actions/action'
 import '../styles/Info.css'
 
 class Info extends React.Component {
@@ -21,11 +25,10 @@ class Info extends React.Component {
   }
 
   onSubmitForm() {
-    console.log('enviar');
-    // const { history, dispatchSetValue } = this.props;
+    const { dispatchSetValue } = this.props;
     // Disparamos a nossa action através da função importada
     // de actions.js, que apelidamos de dispatchSetValue
-    // dispatchSetValue(this.state);
+    dispatchSetValue(this.state);
     // history.push('/professionalform');
   }
 
@@ -75,6 +78,7 @@ class Info extends React.Component {
             min="0"
             placeholder="Valor"
             onChange={ this.handleChange }
+            // value={` {'R$' ${ valor }`}
             value={ valor }
             name="valor"
             required           
@@ -90,5 +94,24 @@ class Info extends React.Component {
     )
   }
 }
+Info.propTypes = {
+  dispatchSetValue: PropTypes.func.isRequired,
+};
 
-export default Info;
+const mapDispatchToProps = (dispatch) => ({
+  // dispatchSetValue é um "apelido" para executarmos a nossa action creator
+  // Nossa action creator é a função importada do arquivo actions
+  // ou seja, setPersonalValue,
+  // que vai receber um parâmetro
+  // esse parâmetro é o estado do nosso componente
+  // aqui estamos apenas avisando que vai existir um parâmetro
+  // mas o estado do componente é passado no momento da execução
+  // nesse caso, dentro da função onSubmitForm
+  dispatchSetValue: (valueAndName) => dispatch(setPurchaseValue(valueAndName)),
+}
+);
+
+const mapStateToProps = (state) => ({ personalInputs: state.reducer.personalInputs });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Info);
+// a função connect conversa com o Provider, um avisa o outro quando há alterações.

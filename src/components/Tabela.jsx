@@ -1,43 +1,41 @@
 import React from "react";
-import '../styles/Tabela.css'
+import '../styles/Tabela.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 
 class Resultado extends React.Component {
    render() {
+    const { infoInputs } = this.props;
+    const { date, local, descricao, valor } = infoInputs;
+    console.log(infoInputs);
     return (
       <div>
       <table id="customers">
+      <tbody>
       <tr>
         <th>Data</th>
         <th>Localização da Compra</th>
         <th>Descrição</th>
         <th>Valor</th>
       </tr>
-
-      {/* {dataInfo.map(function(item)
-                  {
-                     return (
-                         <tr>
-                             <td>{item.data}</td>
-                             <td>{item.CpfCnpj}</td>
-                         </tr>
-                     )
-                  }
-               } */}
-      {/* <tr>
-        <td>05 de Fevereito</td>
-        <td>Posto Ipiranga</td>
-        <td>Abastecimento</td>
-        <td>R$ 100,00</td>
-      </tr>
       <tr>
-        <td>03 de Fevereito</td>
-        <td>Posto Shel</td>
-        <td>Abastecimento</td>
-        <td>R$ 100,00</td>
-      </tr> */}
+        <td>{ date }</td>
+        <td>{ local }</td>
+        <td>{ descricao }</td>
+        <td>{ valor }</td>
+      </tr>
+      </tbody>
     </table>
     </div>
     )}
 }
 
-export default Resultado;
+Resultado.propTypes = {
+  infoInputs: PropTypes.objectOf(PropTypes.string).isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  infoInputs: state.reducer.infoInputs
+});
+
+export default connect(mapStateToProps)(Resultado);
