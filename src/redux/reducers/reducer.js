@@ -2,7 +2,7 @@ import { SET_PURCHASE_VALUE } from '../actions/action';
 
 const INITIAL_STATE  = {
   infoInputs: {
-    date: '00/00/00',
+    date: '00/00/0000',
     local: '-',
     descricao: '-',
     valor: `R$ 0,00`,
