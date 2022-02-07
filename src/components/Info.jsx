@@ -27,8 +27,17 @@ class Info extends React.Component {
 
   onSubmitForm() {
     const { dispatchSetValue } = this.props;
-    const{ date, local, descricao, valor } = this.state
+    let{ date, local, descricao, valor } = this.state
     const { infos } = this.state;
+    
+    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+    let data = new Date(date);
+    date = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
+    
+    let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( valor );
+    valor = valorFormatado
+    console.log(valorFormatado);
+    
     infos.push({ date, local, descricao, valor  })
     // Disparamos a nossa action através da função importada
     // de actions.js, que apelidamos de dispatchSetValue

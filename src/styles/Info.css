@@ -11,4 +11,8 @@
 
 label, input {
   margin-left: 10px;
+  border-width:0px;
+  border:none;
+  border-radius: 7px 7px;
+  height: 26px;
 }
