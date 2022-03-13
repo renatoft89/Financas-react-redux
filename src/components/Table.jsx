@@ -18,6 +18,7 @@ class Table extends React.Component {
         <th>Localização da Compra</th>
         <th>Descrição</th>
         <th>Valor</th>
+        <th>Total</th>
       </tr>
       {infoInputs.infos.map((info) => (
         <tr key={info.local} >
@@ -25,6 +26,7 @@ class Table extends React.Component {
           <td>{ info.local }</td>
           <td>{ info.descricao }</td>
           <td>{ info.valor }</td>
+          <td>{ info.totalComras }</td>
         </tr>
       ))
       }

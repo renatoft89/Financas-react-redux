@@ -91,7 +91,6 @@ class Info extends React.Component {
             min="0"
             placeholder="Valor"
             onChange={ this.handleChange }
-            // value={` {'R$' ${ valor }`}
             value={ valor }
             name="valor"
             required           

@@ -7,6 +7,7 @@ const INITIAL_STATE  = {
       local: '-',
       descricao: '-',
       valor: 'R$ 0,00',
+      totalComras: 'RS 0,00',
     }],
   },
 };
