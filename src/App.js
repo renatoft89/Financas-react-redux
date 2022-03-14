@@ -3,14 +3,13 @@ import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
 import Content from './components/Content';
 
-class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Content />
-      </BrowserRouter>
-    );
-  }
+function App() {
+  return (
+    // Provider para prover as informaĂ§oes somente no componente que vai utilizar. <Home />
+    <BrowserRouter>
+      <Content />
+    </BrowserRouter>
+  );
 }
 
 export default App;

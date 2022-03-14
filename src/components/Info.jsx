@@ -1,61 +1,50 @@
-import React from "react";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useContext } from "react";
+import FinaceContext from "../Context/FinanceContext";
+// import PropTypes from 'prop-types';
 
-import { setPurchaseValue } from '../redux/actions/action'
 import '../styles/Info.css'
 
-class Info extends React.Component {
-  constructor() {
-    super();
+function Info() {
+  let {
+    date,
+    setDate,
+    local,
+    setLocal,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    purchase,
+    setPurchase, 
+  } = useContext(FinaceContext)
+  console.log(date);
 
-    this.state = {
-      date: '',
-      local: '',
-      descricao: '',
-      valor: '',
-      infos: [],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
-  }
-
-  handleChange({ target }) {
-    const { name, value } = target;
-    this.setState({ [name]: value });
-  }
-
-  onSubmitForm() {
-    const { dispatchSetValue } = this.props;
-    let{ date, local, descricao, valor } = this.state
-    const { infos } = this.state;
-    
+  const onSubmitForm = () => {
+    console.log('oi');
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
     let data = new Date(date);
     date = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
     
-    let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( valor );
-    valor = valorFormatado
+    let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( price );
+    price = valorFormatado
     console.log(valorFormatado);
     
-    infos.push({ date, local, descricao, valor  })
+    purchase.push({ date, local, description, price  })
     // Disparamos a nossa action através da função importada
     // de actions.js, que apelidamos de dispatchSetValue
-    dispatchSetValue(this.state);
+    setPurchase([...purchase]);
     // history.push('/professionalform');
   }
 
-  render() {
-    const { date, local, descricao, valor } = this.state;
-    return (
-      <div className="info">
+  return (
+    <div className="info">
         <form action="subtmit" method="get"></form>
         <label htmlFor="date">
           Data: 
           <input
             type="date"
             id="date"
-            onChange={ this.handleChange }
+            onChange={ ({ target }) => setDate(target.value) }
             value={ date }
             name="date"
             required
@@ -66,7 +55,7 @@ class Info extends React.Component {
           <input
             type="text"
             placeholder="local da Compra"
-            onChange={ this.handleChange }
+            onChange={ ({ target }) => setLocal(target.value) }
             value={ local }
             name="local"
             required           
@@ -77,8 +66,8 @@ class Info extends React.Component {
           <input
             type="text"
             placeholder="Descrição"
-            onChange={ this.handleChange }
-            value={ descricao }
+            onChange={ ({ target }) => setDescription(target.value) }
+            value={ description }
             name="descricao"
             required           
           />
@@ -90,40 +79,20 @@ class Info extends React.Component {
             step="0.01" 
             min="0"
             placeholder="Valor"
-            onChange={ this.handleChange }
-            value={ valor }
+            onChange={ ({ target }) => setPrice(target.value) }
+            value={ price }
             name="valor"
             required           
           />
         </label>
         <button
           type="button"
-          onClick={ this.onSubmitForm }
+          onClick={ onSubmitForm }
         >
           Adicionar
         </button>
-      </div>
-    )
-  }
+      </div>    
+  );
 }
-Info.propTypes = {
-  dispatchSetValue: PropTypes.func.isRequired,
-};
 
-const mapDispatchToProps = (dispatch) => ({
-  // dispatchSetValue é um "apelido" para executarmos a nossa action creator
-  // Nossa action creator é a função importada do arquivo actions
-  // ou seja, setPersonalValue,
-  // que vai receber um parâmetro
-  // esse parâmetro é o estado do nosso componente
-  // aqui estamos apenas avisando que vai existir um parâmetro
-  // mas o estado do componente é passado no momento da execução
-  // nesse caso, dentro da função onSubmitForm
-  dispatchSetValue: (valueAndName) => dispatch(setPurchaseValue(valueAndName)),
-}
-);
-
-const mapStateToProps = (state) => ({ personalInputs: state.reducer.personalInputs });
-
-export default connect(mapStateToProps, mapDispatchToProps)(Info);
-// a função connect conversa com o Provider, um avisa o outro quando há alterações.
+export default Info;

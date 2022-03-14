@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../styles/Table.css';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
+import finaceContext from "../Context/FinanceContext";
 
-class Table extends React.Component {
-   render() {
-    const { infoInputs } = this.props;
-    console.log(infoInputs.infos);
-    // const { date, local, descricao, valor } = infoInputs;
-    // console.log(infoInputs);
-    return (
-      <div>
+function Table() {
+  const purchase = useContext(finaceContext);
+  console.log(purchase); 
+  return (
+    <div>
       <table id="customers">
       <tbody>
       <tr>
@@ -18,15 +14,13 @@ class Table extends React.Component {
         <th>Localização da Compra</th>
         <th>Descrição</th>
         <th>Valor</th>
-        <th>Total</th>
       </tr>
-      {infoInputs.infos.map((info) => (
+      {purchase.purchase.map((info) => (
         <tr key={info.local} >
           <td>{ info.date }</td>
           <td>{ info.local }</td>
-          <td>{ info.descricao }</td>
-          <td>{ info.valor }</td>
-          <td>{ info.totalComras }</td>
+          <td>{ info.description }</td>
+          <td>{ info.price }</td>
         </tr>
       ))
       }
@@ -34,14 +28,5 @@ class Table extends React.Component {
     </table>
     </div>
     )}
-}
 
-Table.propTypes = {
-  infoInputs: PropTypes.objectOf(PropTypes.array).isRequired,
-}
-
-const mapStateToProps = (state) => ({
-  infoInputs: state.reducer.infoInputs
-});
-
-export default connect(mapStateToProps)(Table);
+export default Table;
