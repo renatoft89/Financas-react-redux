@@ -3,9 +3,21 @@ import '../styles/Table.css';
 import finaceContext from "../Context/FinanceContext";
 
 function Table() {
-  const purchase = useContext(finaceContext);
-  console.log(purchase); 
-  return (
+  const { purchase, setTotalPurchase } = useContext(finaceContext);
+
+  let sum = purchase.reduce((accum, obj) => {
+    return parseInt(accum) + parseInt(obj.price)
+ }); setTotalPurchase(sum);
+ console.log(purchase[0].price);
+  // const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
+  // let data = new Date(date);
+  // date = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
+  
+  // let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( info.price );
+  // price = valorFormatado
+  // sconsole.log(valorFormatado);
+ 
+ return (
     <div>
       <table id="customers">
       <tbody>
@@ -15,12 +27,12 @@ function Table() {
         <th>Descrição</th>
         <th>Valor</th>
       </tr>
-      {purchase.purchase.map((info) => (
-        <tr key={info.local} >
+      {purchase.map((info) => (
+        <tr key={ info.lenght } >
           <td>{ info.date }</td>
           <td>{ info.local }</td>
           <td>{ info.description }</td>
-          <td>{ info.price }</td>
+          <td>{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( info.price ) }</td>
         </tr>
       ))
       }

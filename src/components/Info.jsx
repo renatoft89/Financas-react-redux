@@ -20,20 +20,10 @@ function Info() {
   console.log(date);
 
   const onSubmitForm = () => {
-    console.log('oi');
-    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
-    let data = new Date(date);
-    date = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
-    
-    let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( price );
-    price = valorFormatado
-    console.log(valorFormatado);
-    
-    purchase.push({ date, local, description, price  })
-    // Disparamos a nossa action através da função importada
-    // de actions.js, que apelidamos de dispatchSetValue
+    let idKey =+ 1 ;  
+    console.log(idKey);      
+    purchase.push({ idKey, date, local, description, price  })    
     setPurchase([...purchase]);
-    // history.push('/professionalform');
   }
 
   return (

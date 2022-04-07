@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from 'react';
+import finaceContext from '../Context/FinanceContext';
 import '../styles/Header.css'
 
-class Header extends React.Component {
-  render() {
-    return (
+function Header() {
+  const { totalPurchase } = useContext(finaceContext);
+  return (
     <div className="header">
       <h1>Controle Financeiro</h1>
-      <p>Simplificado</p>
-    </div>
-    )}
+    <p>{ `Total Despesas = ${ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( totalPurchase ) }` }</p>
+  </div>
+  );
 }
 
 export default Header;

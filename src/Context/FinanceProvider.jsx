@@ -7,9 +7,9 @@ function FinanceProvider({ children }) {
   const [date, setDate] = useState(['00/00/00']);
   const [local, setLocal] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('R$ 0,00');
-  const [purchase, setPurchase] = useState([]);
-  const[totalPurchase, setTotalPurchase] = useState('RS 0,00');
+  const [price, setPrice] = useState(0);
+  const [purchase, setPurchase] = useState([0]);
+  const[totalPurchase, setTotalPurchase] = useState(0);
   // const com os states usados.
   const data = {
     date,
