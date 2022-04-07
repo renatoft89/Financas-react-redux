@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext  } from "react";
 import '../styles/Table.css';
 import finaceContext from "../Context/FinanceContext";
 
 function Table() {
   const { purchase, setTotalPurchase } = useContext(finaceContext);
-  
+
   let sum = purchase.reduce((accum, obj) => parseFloat(accum) + parseFloat(obj.price), 0);
   setTotalPurchase(sum);
   
@@ -18,14 +18,18 @@ function Table() {
         <th>Descrição</th>
         <th>Valor</th>
       </tr>
-      {purchase.map((info) => (
+      {purchase.length <= 1 && (
+        <p>No Results Found</p>
+      )}
+     {purchase.length > 1 && (
+      purchase.map((info) => (
         <tr key={ info.idKey } >
           <td>{ info.date }</td>
           <td>{ info.local }</td>
           <td>{ info.description }</td>
           <td>{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( info.price ) }</td>
         </tr>
-      ))
+      )))
       }
       </tbody>
     </table>
