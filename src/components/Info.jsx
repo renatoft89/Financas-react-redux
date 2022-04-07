@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import FinaceContext from "../Context/FinanceContext";
-// import PropTypes from 'prop-types';
+import FinanceContext from "../Context/FinanceContext";
 
 import '../styles/Info.css'
 
@@ -16,12 +15,12 @@ function Info() {
     setPrice,
     purchase,
     setPurchase, 
-  } = useContext(FinaceContext)
-  console.log(date);
+  } = useContext(FinanceContext)
 
   const onSubmitForm = () => {
-    let idKey =+ 1 ;  
-    console.log(idKey);      
+    let idKey = 1 ;
+    idKey +=1;  
+    // console.log(idKey);      
     purchase.push({ idKey, date, local, description, price  })    
     setPurchase([...purchase]);
   }
@@ -37,7 +36,6 @@ function Info() {
             onChange={ ({ target }) => setDate(target.value) }
             value={ date }
             name="date"
-            required
           />
         </label>
         <label htmlFor="local">
@@ -69,13 +67,14 @@ function Info() {
             step="0.01" 
             min="0"
             placeholder="Valor"
-            onChange={ ({ target }) => setPrice(target.value) }
+            onChange={ ({ target }) => setPrice(parseFloat(target.value)) }
             value={ price }
             name="valor"
             required           
           />
         </label>
         <button
+          className="btn-add"
           type="button"
           onClick={ onSubmitForm }
         >

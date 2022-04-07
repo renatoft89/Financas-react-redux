@@ -4,6 +4,7 @@ import '../styles/Header.css'
 
 function Header() {
   const { totalPurchase } = useContext(finaceContext);
+  console.log(totalPurchase);
   return (
     <div className="header">
       <h1>Controle Financeiro</h1>

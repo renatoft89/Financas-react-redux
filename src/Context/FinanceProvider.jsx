@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import FinanceContext from './FinanceContext';
 
+// date: '00/00/0000',
+// local: '-',
+// descricao: '-',
+// valor: 'R$ 0,00',
+// totalComras: 'RS 0,00',
 
 function FinanceProvider({ children }) {
-  const [date, setDate] = useState(['00/00/00']);
+  const [date, setDate] = useState('00-00-00');
   const [local, setLocal] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState(0);
-  const [purchase, setPurchase] = useState([0]);
+  const [price, setPrice] = useState(parseFloat(0));
+  const [purchase, setPurchase] = useState([{ idKey: 0, date, local, description, price }]);
   const[totalPurchase, setTotalPurchase] = useState(0);
   // const com os states usados.
   const data = {

@@ -4,20 +4,11 @@ import finaceContext from "../Context/FinanceContext";
 
 function Table() {
   const { purchase, setTotalPurchase } = useContext(finaceContext);
-
-  let sum = purchase.reduce((accum, obj) => {
-    return parseInt(accum) + parseInt(obj.price)
- }); setTotalPurchase(sum);
- console.log(purchase[0].price);
-  // const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul","Ago","Set","Out","Nov","Dez"];
-  // let data = new Date(date);
-  // date = ((data.getDate() + " " + meses[(data.getMonth())] + " " + data.getFullYear()));
   
-  // let valorFormatado = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format( info.price );
-  // price = valorFormatado
-  // sconsole.log(valorFormatado);
- 
- return (
+  let sum = purchase.reduce((accum, obj) => parseFloat(accum) + parseFloat(obj.price), 0);
+  setTotalPurchase(sum);
+  
+  return (
     <div>
       <table id="customers">
       <tbody>
@@ -28,7 +19,7 @@ function Table() {
         <th>Valor</th>
       </tr>
       {purchase.map((info) => (
-        <tr key={ info.lenght } >
+        <tr key={ info.idKey } >
           <td>{ info.date }</td>
           <td>{ info.local }</td>
           <td>{ info.description }</td>
