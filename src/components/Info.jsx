@@ -18,7 +18,7 @@ function Info() {
   } = useContext(FinanceContext)
 
   const onSubmitForm = () => {
-    let idKey = 1 ;
+    let idKey = 0 ;
     idKey +=1;  
     // console.log(idKey);      
     purchase.push({ idKey, date, local, description, price  })    

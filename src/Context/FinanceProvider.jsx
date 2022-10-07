@@ -13,7 +13,7 @@ function FinanceProvider({ children }) {
   const [local, setLocal] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(parseFloat(0));
-  const [purchase, setPurchase] = useState([{ idKey: 0, date, local, description, price }]);
+  const [purchase, setPurchase] = useState([]);
   const[totalPurchase, setTotalPurchase] = useState(0);
   // const com os states usados.
   const data = {
